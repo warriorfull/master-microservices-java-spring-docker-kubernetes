@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+
+  accounts:
+    image: eaztbytes/accounts:latest
+    mem_limit: 700m
+    ports:
+      - "8080:8080"
+    networks:
+      - eaztbank-network
+    
+  loans:
+    image: eaztbytes/loans:latest
+    mem_limit: 700m
+    ports:
+      - "8090:8090"
+    networks:
+      - eaztbank-network
+    
+  cards:
+    image: eaztbytes/cards:latest
+    mem_limit: 700m
+    ports:
+      - "9000:9000"
+    networks:
+      - eaztbank-network
+    
+networks:
+  eaztbank-network:
