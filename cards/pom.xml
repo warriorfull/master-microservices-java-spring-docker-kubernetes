@@ -73,7 +73,7 @@
 				<configuration>
 					<image> 
 						<!-- <name>eaztbytes/${project.artifactId}</name> -->
-						<name>todddocker777/${project.artifactId}:${project.version}</name>
+						<name>todddocker777/${project.artifactId}</name>
 					</image>
 				</configuration>
 			</plugin>
