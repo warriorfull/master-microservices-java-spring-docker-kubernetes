@@ -1,11 +1,8 @@
 package com.eaztbytes.accounts.controller;
 
-import java.util.Optional;
 import com.eaztbytes.accounts.model.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.jca.cci.core.InteractionCallback;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 @RestController
-@RefreshScope
 public class AccountsController {
 
 	@Autowired
