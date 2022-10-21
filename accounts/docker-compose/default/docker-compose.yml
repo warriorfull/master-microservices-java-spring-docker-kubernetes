@@ -9,6 +9,25 @@ services:
       - "8071:8071"
     networks:
       - eaztbank-network
+      
+  eurekaserver:
+    image: todddocker777/eurekaserver:latest
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - eaztbank-network
+    depends_on:
+      - configserver
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
 
   accounts:
     image: todddocker777/accounts:latest
@@ -19,6 +38,7 @@ services:
       - eaztbank-network
     depends_on:
       - configserver
+      - eurekaserver
     deploy:
       restart_policy:
         condition: on-failure
@@ -28,6 +48,7 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka/
     
   loans:
     image: todddocker777/loans:latest
@@ -38,6 +59,7 @@ services:
       - eaztbank-network
     depends_on:
       - configserver
+      - eurekaserver
     deploy:
       restart_policy:
         condition: on-failure
@@ -47,6 +69,7 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka/
     
   cards:
     image: todddocker777/cards:latest
@@ -57,6 +80,7 @@ services:
       - eaztbank-network
     depends_on:
       - configserver
+      - eurekaserver
     deploy:
       restart_policy:
         condition: on-failure
@@ -66,6 +90,7 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka/
     
 networks:
   eaztbank-network:
