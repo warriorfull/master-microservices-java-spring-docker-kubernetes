@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 
 @RestController
@@ -86,5 +87,15 @@ public class AccountsController {
 		customerDetails.setLoans(loans);
 		
 		return customerDetails;
+	}
+	
+	@GetMapping("/sayHello")
+	@RateLimiter(name = "sayHello", fallbackMethod = "sayHelloFallback")
+	public String sayHello() {
+		return "Hello, Welcome to Eazybank";
+	}
+	
+	private String sayHelloFallback(Throwable t) {
+		return "Hi, Welcome to Eaztbank";
 	}
 }
