@@ -72,6 +72,7 @@ public class AccountsController {
 		CustomerDetails customerDetails = new CustomerDetails();
 		customerDetails.setAccounts(accounts);
 		customerDetails.setLoans(loans);
+		
 		customerDetails.setCards(cards);
 		
 		return customerDetails;
