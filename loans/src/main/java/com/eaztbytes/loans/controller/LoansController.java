@@ -33,9 +33,9 @@ public class LoansController {
 	
 	@PostMapping("/myLoans")
 	public List<Loans> getLoansDetails(@RequestHeader("eaztbank-correlation-id") String correlationid, @RequestBody Customer customer)  {
-		logger.info("getLoansDetails() method started");
+		logger.info("getLoansDetails() method called !!@@@@@!!");
 		List<Loans> loans = loansRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
-		logger.info("getLoansDetails() method ended");
+//		logger.info("getLoansDetails() method ended");
 		if(loans != null) {
 			return loans;
 		} else {
