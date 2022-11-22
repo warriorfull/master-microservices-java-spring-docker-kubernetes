@@ -1,1 +1,22 @@
 README For project base directory.
+
+addfeignclienttoloans - 
+ - branch to:
+   - add New Microservice assets 
+   - add New Microservice stocks
+ - assets
+   - calls stocks with: 
+     - feignClient
+     - foreign key - stocks:assetNumber
+   - fields:
+     - assetId
+     - assetType
+     - assetNumber
+     - assetName
+
+ - stocks
+   - fields
+     - assetNumber
+     - stockId
+     - stockSymbol
+     - numShares
